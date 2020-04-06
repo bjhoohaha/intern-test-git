@@ -10,6 +10,7 @@ class Button extends React.Component {
     this.renderIcon = this.renderIcon.bind(this);
   }
 
+  // render different icons for different modes
   renderIcon(context) {
     if (context.isDarkMode) {
       return <FontAwesomeIcon icon={faSun} color="#FFA500" />;

@@ -11,6 +11,7 @@ class App extends React.Component {
     };
   }
 
+  // toggle between modes
   toggleMode() {
     this.setState(state => ({
       isDarkMode: !state.isDarkMode
