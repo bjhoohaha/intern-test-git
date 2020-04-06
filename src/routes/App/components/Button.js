@@ -2,6 +2,7 @@ import React from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faMoon, faSun} from "@fortawesome/free-solid-svg-icons";
 import "../styles/_app.scss";
+import ThemeContext from "./ThemeContext";
 
 class Button extends React.Component {
   constructor(props) {
@@ -9,9 +10,8 @@ class Button extends React.Component {
     this.renderIcon = this.renderIcon.bind(this);
   }
 
-  renderIcon() {
-    console.log(this.context);
-    if (this.props.isDarkMode) {
+  renderIcon(context) {
+    if (context.isDarkMode) {
       return <FontAwesomeIcon icon={faSun} color="#FFA500" />;
     } else {
       return <FontAwesomeIcon icon={faMoon} />;
@@ -20,12 +20,16 @@ class Button extends React.Component {
 
   render() {
     return (
-      <button
-        className="app__dark-mode-btn icon level-right"
-        onClick={this.props.onClick}
-      >
-        {this.renderIcon()}
-      </button>
+      <ThemeContext.Consumer>
+        {context => (
+          <button
+            className="app__dark-mode-btn icon level-right"
+            onClick={context.toggleMode}
+          >
+            {this.renderIcon(context)}
+          </button>
+        )}
+      </ThemeContext.Consumer>
     );
   }
 }
